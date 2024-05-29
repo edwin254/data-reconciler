@@ -1,0 +1,48 @@
+version: "3"
+
+x-base-app-conf: &base_app_conf
+  env_file: .env
+  stdin_open: true
+  tty: true
+
+services:
+  # Run  data-reconciler
+  data-reconciler:
+    <<: *base_app_conf
+    image: data-reconciler:latest
+    container_name: data-reconciler
+    restart: always
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./app:/src/app"
+
+  # Generating CSS output file for Tailwind CSS on save
+  fasthtmx-npm-watch:
+    <<: *base_app_conf
+    image: data-reconciler:latest
+    container_name: fasthtmx-npm-watch
+    working_dir: /src
+    command: npm run watch:tailwindcss
+    restart: always
+    volumes:
+      - "./app:/src/app"
+    depends_on:
+      - data-reconciler
+  # Copying JS file from htmx package
+  fasthtmx-htmx-js-generator:
+    <<: *base_app_conf
+    image: data-reconciler:latest
+    container_name: fasthtmx-htmx-js-generator
+    working_dir: /src
+    command: npm run build:htmx
+    restart: no
+    volumes:
+      - "./app:/src/app"
+    depends_on:
+      - data-reconciler
+volumes:
+  reconciler:
