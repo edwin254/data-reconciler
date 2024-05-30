@@ -2,9 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="htmx-config" content='{"includeIndicatorStyles": false}' />
+    <!-- <meta name="htmx-config" content='{"includeIndicatorStyles": false}' /> -->
 
     <title>{% block title %}Data reconciler{% endblock title %}</title>
 
@@ -15,6 +14,14 @@
 {% block head_extra %}{% endblock head_extra %}
 </head>
 <body>
-  {% block content %}{% endblock content %}
+    <div class="container mx-auto bg-gray-300 text-blue-500  px-4">
+        <div class="h5 flex flex-row  justify-center">
+            <div class="px-4 md:px-10 py-4 md:py-7">
+                <div class="flex items-center"> Data reconciler
+                </div>
+            </div>
+        </div>
+      {% block content %}{% endblock content %}
+   </div>
 </body>
 </html>

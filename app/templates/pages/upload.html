@@ -1,5 +1,49 @@
 {% extends "index.html" %}
 
 {% block content %}
-  Uploading file
+
+
+<div class="h5 flex flex-row mb-8">
+  Uploaad files:
+</div>
+<div class="h5 flex flex-row">
+    <div class="flex flex-column">
+    <form hx-encoding='multipart/form-data' hx-target="#result" hx-post="/upload" id="uploads-csv">
+        <div class="py-4">
+        <label class="pr-8" for="sourceFile">Source:</label>
+        <input type="file" id="sourceFile" name="sourceFile" onchange="validateCSV(this)">
+    </div>
+
+    <div class="py-4">
+
+        <label class="pr-8" for="targetFile">Target:</label>
+        <input class="" type="file" id="targetFile" name="targetFile" onchange="validateCSV(this)">
+        </div>
+
+        <button type="submit" disabled>Upload</button>
+        <div id="result"></div>
+  </form>
+</div>
+<div class="h5 flex flex-column">
+    Display Columns comparison results
+</div>
+</div>
+ 
 {% endblock content %}
+
+{% block head_extra %}
+<script>
+    function validateCSV(input) {
+      const sourceFile = document.getElementById('sourceFile').value;
+      const targetFile = document.getElementById('targetFile').value;
+    //   if (!sourceFile.endsWith(".csv") || !targetFile.endsWith(".csv")) {
+    //     alert("Please select a valid CSV files");
+    //     input.value = ""; // Clear the file selection
+    //     document.querySelector("button[type='submit']").disabled = true; // Disable submit button
+    //     return;
+    //   }
+    
+      document.querySelector("button[type='submit']").disabled = false; // Enable submit button
+    }
+  </script>
+{% endblock head_extra %}

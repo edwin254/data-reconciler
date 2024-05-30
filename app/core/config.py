@@ -7,7 +7,7 @@ from starlette.datastructures import CommaSeparatedStrings
 config = Config(".env")
 
 PROJECT_NAME = config(
-    "data-reconciler",
+    "PROJECT_NAME",
     default="Application that reconcile the records, and produce a report detailing the differences between the two data sets - Showcase",
 )
 SECRET_KEY = config("SECRET_KEY", default="secret")
