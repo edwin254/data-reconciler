@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "data-reconciler"
+version = "0.1.0"
+description = "Application that reconcile the records, and produce a report detailing the differences between the two data sets"
+authors = ["Edwin Kamande <kamande254@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+modin = "^0.30.0"
+pandas = "^2.2.2"
+fastapi = ">=0.94,<0.111"
+fastapi-htmx = "^0.4.2"
+uvicorn = "^0.30.0"
+jinja2 = "^3.1.4"
+isort = "^5.13.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
