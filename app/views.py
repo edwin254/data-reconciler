@@ -16,7 +16,7 @@ async def home(request: Request):
 @dashboard_router.post("/upload", response_class=HTMLResponse)
 async def upload_files(request: Request, files: list[UploadFile]= File(...)):
 
-    source, target = files  #Set the target and source values
+    source, _ = files  #Set the target and source values
     source_df = await read_csv_data(source)
     columns = source_df.columns 
     return templates.TemplateResponse(
